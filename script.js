@@ -111,7 +111,7 @@ style.textContent = `
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        color: #333;
+        color: var(--text-color);
     }
     
     @media (max-width: 768px) {
@@ -125,9 +125,9 @@ style.textContent = `
             top: 100%;
             left: 0;
             right: 0;
-            background: #fff;
+            background: var(--bg-color);
             padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--shadow-color);
         }
         
         nav ul.show {
@@ -143,33 +143,18 @@ style.textContent = `
 
 document.head.appendChild(style);
 
-// Theme functionality
+// Theme toggle functionality
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     const themeToggleIcon = themeToggle.querySelector('i');
-    const darkModeToggle = document.getElementById('darkModeToggle');
     
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
-    const savedColor = localStorage.getItem('themeColor');
     
     // Apply saved theme if it exists
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
         themeToggleIcon.classList.replace('fa-moon', 'fa-sun');
-        darkModeToggle.checked = true;
-    }
-    
-    // Apply saved color if it exists
-    if (savedColor) {
-        setThemeColor(savedColor);
-        document.querySelectorAll('.color-option').forEach(option => {
-            option.classList.remove('active');
-            if (option.getAttribute('data-color') === savedColor) {
-                option.classList.add('active');
-            }
-        });
     }
     
     // Theme toggle button click event
@@ -178,89 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (document.body.classList.contains('dark-mode')) {
             themeToggleIcon.classList.replace('fa-moon', 'fa-sun');
-            darkModeToggle.checked = true;
             localStorage.setItem('theme', 'dark');
         } else {
-            themeToggleIcon.classList.replace('fa-sun', 'fa-moon');
-            darkModeToggle.checked = false;
-            localStorage.setItem('theme', 'light');
-        }
-    });
-    
-    // Dark mode checkbox toggle
-    darkModeToggle.addEventListener('change', () => {
-        if (darkModeToggle.checked) {
-            document.body.classList.add('dark-mode');
-            themeToggleIcon.classList.replace('fa-moon', 'fa-sun');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.classList.remove('dark-mode');
             themeToggleIcon.classList.replace('fa-sun', 'fa-moon');
             localStorage.setItem('theme', 'light');
         }
     });
-    
-    // Theme panel toggle
-    const themePanel = document.getElementById('themePanel');
-    const themePanelToggle = document.getElementById('themePanelToggle');
-    
-    themePanelToggle.addEventListener('click', () => {
-        themePanel.classList.toggle('open');
-    });
-    
-    // Color options
-    const colorOptions = document.querySelectorAll('.color-option');
-    
-    colorOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const color = option.getAttribute('data-color');
-            
-            // Remove active class from all options
-            colorOptions.forEach(opt => opt.classList.remove('active'));
-            
-            // Add active class to selected option
-            option.classList.add('active');
-            
-            // Set theme color
-            setThemeColor(color);
-            
-            // Save color preference
-            localStorage.setItem('themeColor', color);
-        });
-    });
-    
-    // Function to set theme color
-    function setThemeColor(color) {
-        let primaryColor;
-        let primaryDark;
-        
-        switch (color) {
-            case 'blue':
-                primaryColor = '#007bff';
-                primaryDark = '#0056b3';
-                break;
-            case 'green':
-                primaryColor = '#28a745';
-                primaryDark = '#1e7e34';
-                break;
-            case 'purple':
-                primaryColor = '#6f42c1';
-                primaryDark = '#5a32a3';
-                break;
-            case 'orange':
-                primaryColor = '#fd7e14';
-                primaryDark = '#d26608';
-                break;
-            case 'pink':
-                primaryColor = '#e83e8c';
-                primaryDark = '#c21f6a';
-                break;
-            default:
-                primaryColor = '#007bff';
-                primaryDark = '#0056b3';
-        }
-        
-        document.documentElement.style.setProperty('--primary-color', primaryColor);
-        document.documentElement.style.setProperty('--primary-dark', primaryDark);
-    }
 }); 
