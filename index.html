@@ -102,6 +102,13 @@
                     </div>
                 </div>
                 <div class="skill-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 68%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
                     <i class="fas fa-database"></i>
                     <h3>Sql</h3>
                     <div class="progress-bar">
@@ -207,8 +214,10 @@
                         <img src="images/blockchain.jpeg" alt="Project 1">
                     </div>
                     <div class="project-info">
+                        <span class="project-badge">Team Project</span>
                         <h3>Blockchain Based Charity Donation Tracking System</h3>
                         <p>Developed a secure and transparent donation tracking system using blockchain technology. Ensured immutability, donor anonymity, and real-time fund tracking through smart contracts.</p>
+                        <p class="project-role"><strong>My role:</strong> Built core frontend pages, integrated blockchain workflow, and helped test smart contract-driven donation tracking.</p>
                         <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
@@ -248,8 +257,10 @@
                         <img src="images/aiml.jpeg" alt="Project 3">
                     </div>
                     <div class="project-info">
+                        <span class="project-badge">Team Project</span>
                         <h3>Fake Product Review Detection</h3>
                         <p>Built a system to detect and remove fake reviews, ensuring authentic ratings.</p>
+                        <p class="project-role"><strong>My role:</strong> Worked on data preprocessing, model training flow, and evaluation for fake review classification.</p>
                         <div class="project-tech">
                             <span>Python</span>
                             <span>Machine Learning</span>
@@ -370,22 +381,22 @@
                 <div class="contact-form">
                     <h3>Send a Message</h3>
                     <p>I usually respond within 24 hours.</p>
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/xwvnllwk" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Your Email" required>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" placeholder="Subject" required>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" placeholder="Your Message" required></textarea>
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
                     </form>

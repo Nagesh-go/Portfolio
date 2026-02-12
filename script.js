@@ -48,27 +48,7 @@ const animateSkillBars = () => {
 
 window.addEventListener('scroll', animateSkillBars);
 
-// Form submission handling
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', { name, email, subject, message });
-    
-    // Show success message
-    alert('Thank you for your message! I will get back to you soon.');
-    
-    // Reset form
-    contactForm.reset();
-});
+// Contact form now submits directly to Formspree (see action URL in index.html).
 
 // Project card hover effect
 const projectCards = document.querySelectorAll('.project-card');
@@ -170,3 +150,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 }); 
+
+
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+
+        try {
+            const res = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { Accept: 'application/json' }
+            });
+
+            if (res.ok) {
+                alert('Message sent successfully!');
+                contactForm.reset();
+            } else {
+                alert('Failed to send message. Please try again.');
+            }
+        } catch (err) {
+            alert('Network error. Please try again.');
+        }
+    });
+}
+
